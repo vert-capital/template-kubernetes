@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{PROJECTNAME}}-{{ENVIRONMENT}}-back
+  namespace: {{PROJECTNAME}}-{{ENVIRONMENT}}
+  labels:
+    app: {{PROJECTNAME}}-{{ENVIRONMENT}}-back
+spec:
+  revisionHistoryLimit: 0
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{PROJECTNAME}}-{{ENVIRONMENT}}-back
+  template:
+    metadata:
+      labels:
+        app: {{PROJECTNAME}}-{{ENVIRONMENT}}-back
+    spec:
+      containers:
+        - name: {{PROJECTNAME}}-{{ENVIRONMENT}}-back
+          image: 197272534240.dkr.ecr.us-east-1.amazonaws.com/{{PROJECTNAME}}-{{ENVIRONMENT}}:latest
+          imagePullPolicy: Always
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            limits:
+              cpu: 700m
+              memory: 800Mi
+            requests:
+              cpu: 80m
+              memory: 150Mi
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: {{PROJECTNAME}}-{{ENVIRONMENT}}-config
+          volumeMounts:
+            - name: config
+              mountPath: /etc/localtime
+      volumes:
+        - name: config
+          hostPath:
+            path: /usr/share/zoneinfo/America/Sao_Paulo

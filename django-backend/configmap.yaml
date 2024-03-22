@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{PROJECTNAME}}-{{ENVIRONMENT}}-config
+  namespace: {{PROJECTNAME}}-{{ENVIRONMENT}}
+data:
+  KAFKA_BOOTSTRAP_SERVER: "kafkaserver"
+  KAFKA_CLIENT_ID: "{{PROJECTNAME}}-{{ENVIRONMENT}}"
+  KAFKA_GROUP_ID: "{{PROJECTNAME}}-{{ENVIRONMENT}}"
+  POSTGRES_DB: "{{PROJECTNAME}}"
+  POSTGRES_USER: "postgres"
+  POSTGRES_PASSWORD: "password"
+  POSTGRES_HOST: "host"
+  POSTGRES_PORT: "5432"
+  DEBUG: "False"
+  LOCAL_ENV: "False"
+  EMAIL_HOST: "host"
+  EMAIL_HOST_USER: "apikey"
+  EMAIL_HOST_PASSWORD: "password"
+  EMAIL_PORT: "587"
+  EMAIL_USE_TLS: "True"
+  AWS_ACCESS_KEY_ID: "key"
+  AWS_SECRET_ACCESS_KEY: "access key"
+  AWS_STORAGE_BUCKET_NAME: "bucketname"
+  CAS_SERVER_URL: "https://id.vert-capital.com/cas/"
+  FRONTEND_AUTH_REDIRECT: "url"
