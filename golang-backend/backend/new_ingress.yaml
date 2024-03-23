@@ -4,20 +4,20 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/ingress.class: nginx
-  name: {{PROJECTNAME}}-{{ENVIRONMENT}}-back-ingress
-  namespace: {{PROJECTNAME}}-{{ENVIRONMENT}}
+  name: {{PROJECT_NAME}}-{{ENVIRONMENT}}-back-ingress
+  namespace: {{PROJECT_NAME}}-{{ENVIRONMENT}}
 spec:
   rules:
-    - host: {{BACKENDENDPOINT}}
+    - host: {{BACKEND_ENDPOINT}}
       http:
         paths:
           - backend:
               service:
-                name: {{PROJECTNAME}}-{{ENVIRONMENT}}-back
+                name: {{PROJECT_NAME}}-{{ENVIRONMENT}}-back
                 port:
                   number: 80
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - {{BACKENDENDPOINT}}
-      secretName: {{PROJECTNAME}}-{{ENVIRONMENT}}-back-tls
+        - {{BACKEND_ENDPOINT}}
+      secretName: {{PROJECT_NAME}}-{{ENVIRONMENT}}-back-tls

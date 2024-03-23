@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{PROJECTNAME}}-front-{{ENVIRONMENT}}-config
-  namespace: {{PROJECTNAME}}-{{ENVIRONMENT}}
+  name: {{PROJECT_NAME}}-front-{{ENVIRONMENT}}-config
+  namespace: {{PROJECT_NAME}}-{{ENVIRONMENT}}
 data:
   PORT: "3000"
   SESSION_SECRET: "{{SECRETKEY}}"

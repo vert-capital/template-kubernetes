@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{PROJECTNAME}}-{{ENVIRONMENT}}-back
-  namespace: {{PROJECTNAME}}-{{ENVIRONMENT}}
+  name: {{PROJECT_NAME}}-{{ENVIRONMENT}}-back
+  namespace: {{PROJECT_NAME}}-{{ENVIRONMENT}}
   labels:
-    app: {{PROJECTNAME}}-{{ENVIRONMENT}}-back
+    app: {{PROJECT_NAME}}-{{ENVIRONMENT}}-back
 spec:
   revisionHistoryLimit: 0
   strategy:
@@ -16,15 +16,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{PROJECTNAME}}-{{ENVIRONMENT}}-back
+      app: {{PROJECT_NAME}}-{{ENVIRONMENT}}-back
   template:
     metadata:
       labels:
-        app: {{PROJECTNAME}}-{{ENVIRONMENT}}-back
+        app: {{PROJECT_NAME}}-{{ENVIRONMENT}}-back
     spec:
       containers:
-        - name: {{PROJECTNAME}}-{{ENVIRONMENT}}-back
-          image: 197272534240.dkr.ecr.us-east-1.amazonaws.com/{{PROJECTNAME}}-{{ENVIRONMENT}}:latest
+        - name: {{PROJECT_NAME}}-{{ENVIRONMENT}}-back
+          image: 197272534240.dkr.ecr.us-east-1.amazonaws.com/{{PROJECT_NAME}}-{{ENVIRONMENT}}:latest
           imagePullPolicy: Always
           readinessProbe:
             tcpSocket:
@@ -42,7 +42,7 @@ spec:
             - containerPort: 8080
           envFrom:
             - configMapRef:
-                name: {{PROJECTNAME}}-{{ENVIRONMENT}}-config
+                name: {{PROJECT_NAME}}-{{ENVIRONMENT}}-config
           volumeMounts:
             - name: config
               mountPath: /etc/localtime

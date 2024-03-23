@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{PROJECT_NAME}}-{{ENVIRONMENT}}-back
+  name: {{PROJECT_NAME}}-{{ENVIRONMENT}}-front
   namespace: {{PROJECT_NAME}}-{{ENVIRONMENT}}
 spec:
   ports:
     - port: 80
-      targetPort: 8080
+      targetPort: 3000
   selector:
-    app: {{PROJECT_NAME}}-{{ENVIRONMENT}}-back
+    app: {{PROJECT_NAME}}-{{ENVIRONMENT}}-front

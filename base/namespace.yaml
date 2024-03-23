@@ -2,4 +2,4 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: {{PROJECTNAME}}-{{ENVIRONMENT}}
+  name: {{PROJECT_NAME}}-{{ENVIRONMENT}}

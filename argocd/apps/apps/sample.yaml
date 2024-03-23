@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{PROJECT_NAME}}-{{ENVIRONMENT}}
+spec:
+  destination:
+    namespace: argocd
+    server: "https://0878CEA5C704E95D31C5AD5BC9AF0F36.gr7.us-east-1.eks.amazonaws.com"
+  source:
+    path: {{PROJECT_NAME}}-{{ENVIRONMENT}}/
+    repoURL: "https://thiagofreitas@bitbucket.org/sistema_vert/kubeprod.git"
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  project: production
+  syncPolicy:
+    SyncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
