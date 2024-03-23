@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{PROJECT_NAME}}-{{ENVIRONMENT}}
+spec:
+  destination:
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: {{PROJECT_NAME}}-{{ENVIRONMENT}}/
+    repoURL: 'https://thiagofreitas@bitbucket.org/sistema_vert/kubehomol.git'
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  project: homologation
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
