@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{PROJECT_NAME}}-front-{{ENVIRONMENT}}-config
+  name: {{PROJECT_NAME}}-{{ENVIRONMENT}}-front-config
   namespace: {{PROJECT_NAME}}-{{ENVIRONMENT}}
 data:
   PORT: "3000"
