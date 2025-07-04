@@ -40,6 +40,17 @@ spec:
               memory: 150Mi
           ports:
             - containerPort: 8080
+          env:
+            - name: "OTEL_SERVICE_NAME"
+              value: "{{PROJECT_NAME}}-{{ENVIRONMENT}}"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "cx.application.name={{PROJECT_NAME}}-{{ENVIRONMENT}},cx.subsystem.name={{PROJECT_NAME}}-{{ENVIRONMENT}}-backend"
+            - name: OTEL_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://$(OTEL_IP):4317
           envFrom:
             - configMapRef:
                 name: {{PROJECT_NAME}}-{{ENVIRONMENT}}-config
